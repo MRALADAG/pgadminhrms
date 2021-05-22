@@ -10,20 +10,22 @@ import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "staff")
 @Data
+@EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
 @AllArgsConstructor
 
-public class Staff {
+public class Staff extends Users {
 
-	@Id
-	@GeneratedValue
-	@Column(name = "id")
-	private int id;
+	// @Id
+	// @GeneratedValue
+	// @Column(name = "id")
+	// private int id;
 
 	@Column(name = "first_name")
 	private String firstName;

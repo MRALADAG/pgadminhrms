@@ -8,6 +8,7 @@ import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Entity
@@ -16,17 +17,18 @@ import lombok.NoArgsConstructor;
 // Burada entity'nin veritabanınnda hangi tabloya karşılık geldiğini
 // belirtiyoruz.
 @Data
+@EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
 @AllArgsConstructor
 
-public class Employers {
+public class Employers extends Users {
 
-	@Id
-	@GeneratedValue
+	// @Id
+	// @GeneratedValue
 	// Bu kısımda primary key olan user id nin ardışık olarak birer birer artacağı
 	// belirtiliyor.
-	@Column(name = "id")
-	private int id;
+	// @Column(name = "id")
+	// private int id;
 
 	@Column(name = "company_name")
 	private String companyName;
