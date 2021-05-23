@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kodlamaio.pgadminhrms.business.abstracts.UserService;
+import kodlamaio.pgadminhrms.core.utilities.results.DataResult;
+import kodlamaio.pgadminhrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.pgadminhrms.dataAccess.abstracts.UserDao;
 import kodlamaio.pgadminhrms.entities.concretes.Users;
 
@@ -22,9 +24,9 @@ public class UserManager implements UserService {
 	}
 
 	@Override
-	public List<Users> getAll() {
-		
-		return this.userDao.findAll();
+	public DataResult<List<Users>> getAll() {
+
+		return new SuccessDataResult<List<Users>>(this.userDao.findAll(), "Kullanıcılar başarıyla listelendi.");
 	}
 
 }

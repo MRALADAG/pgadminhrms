@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import kodlamaio.pgadminhrms.business.abstracts.UserService;
+import kodlamaio.pgadminhrms.core.utilities.results.DataResult;
 import kodlamaio.pgadminhrms.entities.concretes.Users;
 
 @RestController
@@ -34,7 +35,7 @@ public class UsersController {
 	@GetMapping("/getall")
 	// Bu anotasyon http veri isteğine karşılık geliyor.
 
-	public List<Users> getAll() {
+	public DataResult<List<Users>> getAll() {
 
 		// ("/getall") Bu ifade; eğer bir kişi kodlama.io/api/users/getall şeklinde bir
 		// istekte bulunursa bu metodu çalıştır demektir.
