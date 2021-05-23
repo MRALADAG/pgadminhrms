@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 
-public class Employees extends Users {
+public class Employee extends User {
 
 	@Column(name = "first_name")
 	private String firstName;

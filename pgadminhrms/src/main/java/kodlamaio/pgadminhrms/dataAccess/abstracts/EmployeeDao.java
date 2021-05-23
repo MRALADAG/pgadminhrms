@@ -2,8 +2,8 @@ package kodlamaio.pgadminhrms.dataAccess.abstracts;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import kodlamaio.pgadminhrms.entities.concretes.Employees;
+import kodlamaio.pgadminhrms.entities.concretes.Employee;
 
-public interface EmployeeDao extends JpaRepository<Employees, Integer> {
+public interface EmployeeDao extends JpaRepository<Employee, Integer> {
 
 }

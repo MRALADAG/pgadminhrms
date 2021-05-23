@@ -2,12 +2,12 @@ package kodlamaio.pgadminhrms.business.abstracts;
 
 import java.util.List;
 
-import kodlamaio.pgadminhrms.entities.concretes.Employees;
+import kodlamaio.pgadminhrms.entities.concretes.Employee;
 
 public interface EmployeeService {
 
-	List<Employees> getAll();
+	List<Employee> getAll();
 
-	void addEmployee(Employees employees);
+	void addEmployee(Employee employees);
 
 }

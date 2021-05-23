@@ -9,7 +9,7 @@ import kodlamaio.pgadminhrms.business.abstracts.UserService;
 import kodlamaio.pgadminhrms.core.utilities.results.DataResult;
 import kodlamaio.pgadminhrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.pgadminhrms.dataAccess.abstracts.UserDao;
-import kodlamaio.pgadminhrms.entities.concretes.Users;
+import kodlamaio.pgadminhrms.entities.concretes.User;
 
 @Service
 // Bunun anlamı katanlı yapıdaki service görevini üstlenbecek olan class'ı Spring'e gönderiyor.
@@ -24,9 +24,9 @@ public class UserManager implements UserService {
 	}
 
 	@Override
-	public DataResult<List<Users>> getAll() {
+	public DataResult<List<User>> getAll() {
 
-		return new SuccessDataResult<List<Users>>(this.userDao.findAll(), "Kullanıcılar başarıyla listelendi.");
+		return new SuccessDataResult<List<User>>(this.userDao.findAll(), "Kullanıcılar başarıyla listelendi.");
 	}
 
 }

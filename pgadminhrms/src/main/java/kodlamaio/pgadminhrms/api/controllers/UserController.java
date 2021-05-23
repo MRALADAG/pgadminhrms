@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import kodlamaio.pgadminhrms.business.abstracts.UserService;
 import kodlamaio.pgadminhrms.core.utilities.results.DataResult;
-import kodlamaio.pgadminhrms.entities.concretes.Users;
+import kodlamaio.pgadminhrms.entities.concretes.User;
 
 @RestController
 @RequestMapping("/api/users")
-public class UsersController {
+public class UserController {
 
 	// Controller sınıfları API de dış dünya ile sistemimizin iletişim kurduğu
 	// yerdir. Ayrıca sistemin başka sistemlerle uyumlu bir şekilde çelışmesını
@@ -25,7 +25,7 @@ public class UsersController {
 	private UserService userService;
 
 	@Autowired
-	public UsersController(UserService userService) {
+	public UserController(UserService userService) {
 		super();
 		this.userService = userService;
 		// Burada @Autowired anotasyonu arka planda UserService interface'ini implemente
@@ -35,7 +35,7 @@ public class UsersController {
 	@GetMapping("/getall")
 	// Bu anotasyon http veri isteğine karşılık geliyor.
 
-	public DataResult<List<Users>> getAll() {
+	public DataResult<List<User>> getAll() {
 
 		// ("/getall") Bu ifade; eğer bir kişi kodlama.io/api/users/getall şeklinde bir
 		// istekte bulunursa bu metodu çalıştır demektir.

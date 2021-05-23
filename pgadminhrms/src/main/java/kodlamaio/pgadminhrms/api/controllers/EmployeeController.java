@@ -11,31 +11,31 @@ import org.springframework.web.bind.annotation.RestController;
 
 import kodlamaio.pgadminhrms.business.abstracts.EmployeeService;
 import kodlamaio.pgadminhrms.dataAccess.abstracts.EmployeeDao;
-import kodlamaio.pgadminhrms.entities.concretes.Employees;
+import kodlamaio.pgadminhrms.entities.concretes.Employee;
 
 @RestController
-@RequestMapping("/api/employees")
-public class EmployeesController {
+@RequestMapping("/api/employee")
+public class EmployeeController {
 
 	private EmployeeService employeeService;
 
 	@Autowired
-	public EmployeesController(EmployeeService employeeService) {
+	public EmployeeController(EmployeeService employeeService) {
 		super();
 		this.employeeService = employeeService;
 	}
 
 	@GetMapping("/getall")
-	public List<Employees> getAll() {
+	public List<Employee> getAll() {
 
 		return this.employeeService.getAll();
 
 	}
 
 	@PostMapping("/addemployee")
-	public void addEmployee(@RequestBody Employees employees) {
+	public void addEmployee(@RequestBody Employee employee) {
 
-		this.employeeService.addEmployee(employees);
+		this.employeeService.addEmployee(employee);
 
 	}
 }

@@ -3,9 +3,10 @@ package kodlamaio.pgadminhrms.business.abstracts;
 import java.util.List;
 
 import kodlamaio.pgadminhrms.core.utilities.results.DataResult;
-import kodlamaio.pgadminhrms.entities.concretes.Users;
+import kodlamaio.pgadminhrms.entities.concretes.User;
 
 public interface UserService {
 
-	DataResult<List<Users>> getAll();
+	DataResult<List<User>> getAll();
+
 }

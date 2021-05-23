@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 
-public class Staff extends Users {
+public class Staff extends User {
 
 	// @Id
 	// @GeneratedValue

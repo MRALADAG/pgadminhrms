@@ -21,7 +21,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 
-public class Employers extends Users {
+public class Employer extends User {
 
 	// @Id
 	// @GeneratedValue

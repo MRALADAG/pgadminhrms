@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import kodlamaio.pgadminhrms.business.abstracts.EmployeeService;
 import kodlamaio.pgadminhrms.dataAccess.abstracts.EmployeeDao;
-import kodlamaio.pgadminhrms.entities.concretes.Employees;
+import kodlamaio.pgadminhrms.entities.concretes.Employee;
 
 @Service
 public class EmployeeManager implements EmployeeService {
@@ -21,13 +21,13 @@ public class EmployeeManager implements EmployeeService {
 	}
 
 	@Override
-	public List<Employees> getAll() {
+	public List<Employee> getAll() {
 
 		return this.employeeDao.findAll();
 	}
 
 	@Override
-	public void addEmployee(Employees employees) {
+	public void addEmployee(Employee employees) {
 
 		this.employeeDao.save(employees);
 
