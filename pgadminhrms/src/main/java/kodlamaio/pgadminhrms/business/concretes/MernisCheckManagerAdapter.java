@@ -1,35 +1,28 @@
 package kodlamaio.pgadminhrms.business.concretes;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import kodlamaio.pgadminhrms.business.abstracts.EmployeeService;
+import kodlamaio.pgadminhrms.business.abstracts.UserCheckService;
 import kodlamaio.pgadminhrms.dataAccess.abstracts.EmployeeDao;
 import kodlamaio.pgadminhrms.entities.concretes.Employee;
+import kodlamaio.pgadminhrms.mernisServices.MernisCheck;
 
 @Service
-public class EmployeeManager implements EmployeeService {
+public class MernisCheckManagerAdapter implements UserCheckService {
 
 	private EmployeeDao employeeDao;
 
 	@Autowired
-	public EmployeeManager(EmployeeDao employeeDao) {
+	public MernisCheckManagerAdapter(EmployeeDao employeeDao) {
 		super();
 		this.employeeDao = employeeDao;
 	}
 
 	@Override
-	public List<Employee> getAll() {
+	public boolean CheckIfRealPerson(Employee employee) {
 
-		return this.employeeDao.findAll();
-	}
-
-	@Override
-	public void addEmployee(Employee employee) {
-
-		this.employeeDao.save(employee);
+		return new MernisCheck().isRealPerson();
 
 	}
 
