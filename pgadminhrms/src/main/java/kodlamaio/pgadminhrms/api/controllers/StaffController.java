@@ -27,7 +27,7 @@ public class StaffController {
 	}
 
 	@GetMapping("/getall")
-	public DataResult<List<Staff>> gatall() {
+	public DataResult<List<Staff>> gatAll() {
 
 		return this.staffService.getAll();
 

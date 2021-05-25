@@ -33,7 +33,7 @@ public class UserController {
 	}
 
 	@GetMapping("/getall")
-	// Bu anotasyon http veri isteğine karşılık geliyor.
+	// Bu anotasyon http veri isteğine (http get) karşılık geliyor.
 
 	public DataResult<List<User>> getAll() {
 

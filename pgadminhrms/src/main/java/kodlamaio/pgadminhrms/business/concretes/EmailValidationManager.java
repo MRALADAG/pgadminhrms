@@ -10,7 +10,7 @@ import kodlamaio.pgadminhrms.core.utilities.results.SuccessResult;
 public class EmailValidationManager implements EmailValidationService {
 
 	@Override
-	public Result emailIsValidate() {
+	public Result isEmailValid() {
 
 		return new SuccessResult("Eposta doğrulaması başarılıdır.");
 

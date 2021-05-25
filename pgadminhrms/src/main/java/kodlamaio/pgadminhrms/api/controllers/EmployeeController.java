@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import kodlamaio.pgadminhrms.business.abstracts.EmployeeService;
+import kodlamaio.pgadminhrms.core.utilities.results.DataResult;
+import kodlamaio.pgadminhrms.core.utilities.results.Result;
 import kodlamaio.pgadminhrms.dataAccess.abstracts.EmployeeDao;
 import kodlamaio.pgadminhrms.entities.concretes.Employee;
 
@@ -26,16 +28,16 @@ public class EmployeeController {
 	}
 
 	@GetMapping("/getall")
-	public List<Employee> getAll() {
+	public DataResult<List<Employee>> getAll() {
 
 		return this.employeeService.getAll();
 
 	}
 
 	@PostMapping("/addemployee")
-	public void addEmployee(@RequestBody Employee employee) {
+	public Result addEmployee(@RequestBody Employee employee) {
 
-		this.employeeService.addEmployee(employee);
+		return this.employeeService.addEmployee(employee);
 
 	}
 }

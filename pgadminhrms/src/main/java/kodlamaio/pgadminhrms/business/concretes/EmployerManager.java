@@ -36,7 +36,7 @@ public class EmployerManager implements EmployerService {
 	public Result addEmployer(Employer employer) {
 
 		this.employerDao.save(employer);
-		return new SuccessResult();
+		return new SuccessResult("İşveren sisteme eklenmiştir.");
 
 	}
 

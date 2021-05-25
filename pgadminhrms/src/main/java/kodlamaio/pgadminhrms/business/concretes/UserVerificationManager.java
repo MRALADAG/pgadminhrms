@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kodlamaio.pgadminhrms.business.abstracts.UserVerificationService;
+import kodlamaio.pgadminhrms.core.utilities.results.DataResult;
+import kodlamaio.pgadminhrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.pgadminhrms.dataAccess.abstracts.UserVerificationDao;
 import kodlamaio.pgadminhrms.entities.concretes.UserVerification;
 
@@ -21,9 +23,11 @@ public class UserVerificationManager implements UserVerificationService {
 	}
 
 	@Override
-	public List<UserVerification> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+	public DataResult<List<UserVerification>> getAllValidUser() {
+
+		return new SuccessDataResult<List<UserVerification>>(this.userVerificationDao.findAll(),
+				"Onaylanmış kullanıcılar listelenmiştir.");
+
 	}
 
 }
