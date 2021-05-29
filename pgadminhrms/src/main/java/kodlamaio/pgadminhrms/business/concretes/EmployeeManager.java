@@ -2,13 +2,12 @@ package kodlamaio.pgadminhrms.business.concretes;
 
 import java.util.List;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kodlamaio.pgadminhrms.business.abstracts.EmailValidationService;
 import kodlamaio.pgadminhrms.business.abstracts.EmployeeService;
+import kodlamaio.pgadminhrms.business.abstracts.UserCheckService;
 import kodlamaio.pgadminhrms.core.utilities.results.DataResult;
 import kodlamaio.pgadminhrms.core.utilities.results.ErrorResult;
 import kodlamaio.pgadminhrms.core.utilities.results.Result;
@@ -29,6 +28,9 @@ public class EmployeeManager implements EmployeeService {
 	private EmailValidationService emailValidationService;
 
 	@Autowired
+	private UserCheckService userCheckService;
+
+	@Autowired
 	public EmployeeManager(EmployeeDao employeeDao, UserDao userDao) {
 		super();
 		this.employeeDao = employeeDao;
@@ -43,7 +45,7 @@ public class EmployeeManager implements EmployeeService {
 	}
 
 	@Override
-	public Result addEmployee(@Valid Employee employee) {
+	public Result addEmployee(Employee employee) {
 
 		if (!isEmailExist(employee).isSuccess()) {
 
@@ -52,6 +54,10 @@ public class EmployeeManager implements EmployeeService {
 		} else if (!isNatIdExist(employee).isSuccess()) {
 
 			return new ErrorResult(isNatIdExist(employee).getMessage());
+
+		} else if (!this.userCheckService.checkIfRealPerson(employee).isSuccess()) {
+
+			return new ErrorResult(this.userCheckService.checkIfRealPerson(employee).getMessage());
 
 		}
 
