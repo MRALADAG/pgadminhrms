@@ -4,9 +4,10 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,12 +23,19 @@ import lombok.NoArgsConstructor;
 
 public class Employee extends User {
 
+	@Valid
+	@NotBlank(message = "İsim kısmı boş bırakılamaz.")
 	@Column(name = "first_name")
 	private String firstName;
 
+	@Valid
+	@NotBlank(message = "Soyisim kısmı boş bırakılamaz.")
 	@Column(name = "last_name")
 	private String lastName;
 
+	@Valid
+	@NotBlank(message = "Kimlik numarası alanı boş bırakılamaz.")
+	@Size(min = 11, max = 11, message = "Lütfen 11 haneli kimlik nuamaranızı giriniz.")
 	@Column(name = "nationality_number")
 	private String nationalityNumber;
 

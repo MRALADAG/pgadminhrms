@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import kodlamaio.pgadminhrms.business.abstracts.EmployeeService;
@@ -39,6 +40,20 @@ public class EmployeeController {
 	public Result addEmployee(@Valid @RequestBody Employee employee) {
 
 		return this.employeeService.addEmployee(employee);
+
+	}
+
+	@GetMapping("/findById")
+	public DataResult<Employee> findById(@RequestParam int id) {
+
+		return this.employeeService.findById(id);
+
+	}
+
+	@PostMapping("/deleteInEmployee")
+	public Result deleteInEmployee(@RequestBody int id) {
+
+		return this.employeeService.deleteInEmployee(id);
 
 	}
 }

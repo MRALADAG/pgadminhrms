@@ -6,4 +6,8 @@ import kodlamaio.pgadminhrms.entities.concretes.Employee;
 
 public interface EmployeeDao extends JpaRepository<Employee, Integer> {
 
+	Employee findById(int id);
+
+	void deleteById(int id);
+
 }

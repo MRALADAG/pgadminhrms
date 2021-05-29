@@ -34,7 +34,7 @@ public class User {
 
 	@Valid
 	@NotBlank(message = "telefon alanı boş bırakılamaz.")
-	@Column(name = "telephone", nullable = false)
+	@Column(name = "telephone")
 	private String telephone;
 
 	@Column(name = "email")

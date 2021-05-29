@@ -92,4 +92,19 @@ public class EmployeeManager implements EmployeeService {
 		return new SuccessResult();
 
 	}
+
+	@Override
+	public DataResult<Employee> findById(int id) {
+
+		return new SuccessDataResult<Employee>(this.employeeDao.findById(id));
+
+	}
+
+	@Override
+	public Result deleteInEmployee(int id) {
+
+		this.employeeDao.deleteById(id);
+		return new SuccessResult("İş arayan kişinin kaydı silinmiştir.");
+
+	}
 }

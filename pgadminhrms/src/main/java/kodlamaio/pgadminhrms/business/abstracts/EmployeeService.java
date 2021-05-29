@@ -12,4 +12,8 @@ public interface EmployeeService {
 
 	Result addEmployee(Employee employee);
 
+	DataResult<Employee> findById(int id);
+
+	Result deleteInEmployee(int id);
+
 }
