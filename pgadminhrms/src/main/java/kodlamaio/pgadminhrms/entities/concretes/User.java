@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -29,6 +30,7 @@ public class User {
 	@Column(name = "id")
 	private int id;
 
+	@NotBlank(message = "telefon alanı boş bırakılamaz.")
 	@Column(name = "telephone")
 	private String telephone;
 
