@@ -2,9 +2,8 @@ package kodlamaio.pgadminhrms.entities.concretes;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -30,9 +29,11 @@ public class Employer extends User {
 	// @Column(name = "id")
 	// private int id;
 
+	@NotBlank(message = "Şirket ismi boş bırakılamaz. ")
 	@Column(name = "company_name")
 	private String companyName;
 
+	@NotBlank(message = "Web adresi boş bırakılamaz. ")
 	@Column(name = "website")
 	private String website;
 

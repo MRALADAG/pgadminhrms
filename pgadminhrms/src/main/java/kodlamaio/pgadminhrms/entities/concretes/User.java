@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
-import javax.validation.Valid;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
@@ -32,16 +32,17 @@ public class User {
 	@Column(name = "id")
 	private int id;
 
-	@Valid
 	@NotBlank(message = "telefon alanı boş bırakılamaz.")
 	@Column(name = "telephone")
 	private String telephone;
 
+	@NotBlank(message = "mail alanı boş bırakılamaz.")
+	@Email(message = "Lütfen geçerli bir E-posta adresi giriniz.", regexp = "^[a-z A-Z 0-9]+[\\.|_]?[a-z A-Z 0-9]+@[a-z A-Z 0-9]+\\.[a-z A-Z 0-9]{2,4}(\\.[a-z A-Z 0-9]{2})?$")
 	@Column(name = "email")
 	private String email;
 
-	@Valid
-	@Size(min = 9, message = "Porola alanı en az 9 karakter olmalıdır.")
+	@NotBlank(message = "Parola alanı boş bırakılamaz.")
+	@Size(min = 9, message = "Parola alanı en az 9 karakter olmalıdır.")
 	@Column(name = "password")
 	private String password;
 

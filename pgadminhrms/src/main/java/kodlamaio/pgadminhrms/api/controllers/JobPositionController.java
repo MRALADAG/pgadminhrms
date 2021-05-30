@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 import kodlamaio.pgadminhrms.business.abstracts.JobPositionService;
 import kodlamaio.pgadminhrms.core.utilities.results.DataResult;
 import kodlamaio.pgadminhrms.core.utilities.results.Result;
-import kodlamaio.pgadminhrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.pgadminhrms.entities.concretes.JobPosition;
 
 @RestController
