@@ -14,4 +14,12 @@ public interface JobAdvertisementService {
 
 	DataResult<List<JobAdvertisement>> getAllJobAdvertisementByActivationState(boolean activationState);
 
+	DataResult<JobAdvertisement> findById(int id);
+
+	DataResult<List<JobAdvertisement>> getAllJobAdvertisementByEmployerId(int id);
+
+	DataResult<JobAdvertisement> getByCompanyNameAndJobTitle(String companyName, String jobTitle);
+
+	DataResult<List<JobAdvertisement>> getAllByCompanyName(String companyName);
+
 }

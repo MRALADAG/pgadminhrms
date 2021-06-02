@@ -1,7 +1,10 @@
 package kodlamaio.pgadminhrms.entities.concretes;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
@@ -28,6 +31,7 @@ public class Employer extends User {
 	// belirtiliyor.
 	// @Column(name = "id")
 	// private int id;
+	// Bu kısım base tabloda olduğu için iptal edildi.
 
 	@NotBlank(message = "Şirket ismi boş bırakılamaz. ")
 	@Column(name = "company_name")
@@ -36,5 +40,8 @@ public class Employer extends User {
 	@NotBlank(message = "Web adresi boş bırakılamaz. ")
 	@Column(name = "website")
 	private String website;
+
+	@OneToMany(mappedBy = "employer")
+	private List<JobAdvertisement> advertisements;
 
 }

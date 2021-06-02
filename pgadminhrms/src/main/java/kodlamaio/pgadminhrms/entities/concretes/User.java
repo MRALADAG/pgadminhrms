@@ -1,5 +1,7 @@
 package kodlamaio.pgadminhrms.entities.concretes;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,9 +10,13 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -45,5 +51,19 @@ public class User {
 	@Size(min = 9, message = "Parola alanı en az 9 karakter olmalıdır.")
 	@Column(name = "password")
 	private String password;
+
+	@CreationTimestamp
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "record_date")
+	private Date recordDate;
+
+	// Burada dikkat edilmesi gereken husus eğer tarihle ilgili bir field
+	// tanımlanacaksa değişken türünün java.util.date belirtilmesi gerekir. Ayrıca
+	// tarihle ilgili alanlarda @Temporal anatasyonunun kullanılması şarttır. Bu
+	// anotasyonun içerisinde ise örneğin; @Temporal(TemporalType.TIMESTAMP)
+	// şeklinde değişkene atanacak değerin hangi türde tarih verisinin olduğu
+	// belirtilmelidir. Bu anatasyonun içerisine duruma göre TemporalType.TIMESTAMP,
+	// TemporalType.DATE, TemporalType.TIME şeklinde atanacak olan tarih türü
+	// belirtilmelidir.
 
 }

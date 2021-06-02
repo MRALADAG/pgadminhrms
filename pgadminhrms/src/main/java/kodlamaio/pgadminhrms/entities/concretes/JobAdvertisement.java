@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -41,31 +43,37 @@ public class JobAdvertisement {
 	@Column(name = "job_description")
 	private String jobDescription;
 
-	@NotBlank(message = "İş tanımı pozisyonu seçilmelidir.")
-	@Column(name = "job_position")
-	private String jobPosition;
+//	@NotBlank(message = "İş tanımı pozisyonu seçilmelidir.")
+//	@Column(name = "job_position")
+	@ManyToOne(targetEntity = JobPosition.class)
+	@JoinColumn(name = "job_position")
+	private JobPosition jobPosition;
 
 	@NotBlank(message = "Şehir seçimi yapılmalıdır.")
 	@Column(name = "city_name")
 	private String city;
 
-	@Column(name = "employer_name")
-	private String employer;
-
 	@CreationTimestamp
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "creation_date")
+//	private java.util.Date dateOfCreation;
 	private Date dateOfCreation;
 
 	@Column(name = "activation_state")
 	private boolean activationState;
 
+	@Temporal(TemporalType.DATE)
 	@NotBlank(message = "Son başvuru tarihi belirtilmelidir.")
 	@Column(name = "deadline")
+//	private java.util.Date deadline;
 	private Date deadline;
 
 	@NotBlank(message = "Açık pozisyon adedi belirtilmelidir.")
 	@Column(name = "number_of_recruited")
 	private int numberOfRecruited;
+
+	@ManyToOne(targetEntity = Employer.class)
+	@JoinColumn(name = "employer_id", referencedColumnName = "id")
+	private Employer employer;
 
 }

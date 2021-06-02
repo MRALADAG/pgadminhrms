@@ -5,6 +5,8 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
@@ -35,6 +37,7 @@ public class Employee extends User {
 	@Column(name = "nationality_number")
 	private String nationalityNumber;
 
+	@Temporal(TemporalType.DATE)
 	@Column(name = "birthday")
 	private Date birthDay;
 
