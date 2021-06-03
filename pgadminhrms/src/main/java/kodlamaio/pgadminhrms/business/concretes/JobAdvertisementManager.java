@@ -57,20 +57,27 @@ public class JobAdvertisementManager implements JobAdvertisementService {
 
 	@Override
 	public DataResult<List<JobAdvertisement>> getAllJobAdvertisementByEmployerId(int id) {
-		// TODO Auto-generated method stub
-		return null;
+
+		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.getByEmployer_id(id),
+				"İlanlar iş verene göre listelenmiştir.");
+
 	}
 
 	@Override
 	public DataResult<JobAdvertisement> getByCompanyNameAndJobTitle(String companyName, String jobTitle) {
-		// TODO Auto-generated method stub
-		return null;
+
+		return new SuccessDataResult<JobAdvertisement>(this.jobAdvertisementDao
+				.getByEmployer_CompanyNameAndJobPosition_JobTitleContainsIgnoreCase(companyName, jobTitle),
+				"İlan işveren ismine ve iş pozisyonuna göre getirilmiştir. ");
 	}
 
 	@Override
 	public DataResult<List<JobAdvertisement>> getAllByCompanyName(String companyName) {
-		// TODO Auto-generated method stub
-		return null;
+
+		return new SuccessDataResult<List<JobAdvertisement>>(
+				this.jobAdvertisementDao.findByEmployer_CompanyNameContainsIgnoreCase(companyName),
+				"İş verenin bütün ilanları listelenmiştir. ");
+
 	}
 
 }

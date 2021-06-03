@@ -12,7 +12,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -43,15 +45,9 @@ public class JobAdvertisement {
 	@Column(name = "job_description")
 	private String jobDescription;
 
-//	@NotBlank(message = "İş tanımı pozisyonu seçilmelidir.")
-//	@Column(name = "job_position")
-	@ManyToOne(targetEntity = JobPosition.class)
-	@JoinColumn(name = "job_position")
-	private JobPosition jobPosition;
-
-	@NotBlank(message = "Şehir seçimi yapılmalıdır.")
-	@Column(name = "city_name")
-	private String city;
+//	@NotBlank(message = "Şehir seçimi yapılmalıdır.")
+//	@Column(name = "city_name")
+//	private String city;
 
 	@CreationTimestamp
 	@Temporal(TemporalType.TIMESTAMP)
@@ -63,17 +59,29 @@ public class JobAdvertisement {
 	private boolean activationState;
 
 	@Temporal(TemporalType.DATE)
-	@NotBlank(message = "Son başvuru tarihi belirtilmelidir.")
+//	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
+//	@NotBlank(message = "Son başvuru tarihi belirtilmelidir.")
 	@Column(name = "deadline")
 //	private java.util.Date deadline;
 	private Date deadline;
 
-	@NotBlank(message = "Açık pozisyon adedi belirtilmelidir.")
+	@NotNull(message = "Açık pozisyon adedi belirtilmelidir. ")
+	@Min(value = 1, message = "İşe alınacak personel adedi belirtilmelidir. ")
 	@Column(name = "number_of_recruited")
 	private int numberOfRecruited;
 
 	@ManyToOne(targetEntity = Employer.class)
-	@JoinColumn(name = "employer_id", referencedColumnName = "id")
+	@JoinColumn(name = "employer_id")
 	private Employer employer;
+
+//	@NotBlank(message = "İş tanımı pozisyonu seçilmelidir.")
+//	@Column(name = "job_position_id")
+	@ManyToOne(targetEntity = JobPosition.class)
+	@JoinColumn(name = "job_position_id")
+	private JobPosition jobPosition;
+
+	@ManyToOne(targetEntity = City.class)
+	@JoinColumn(name = "city_name_id")
+	private City city;
 
 }
