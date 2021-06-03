@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import kodlamaio.pgadminhrms.business.abstracts.JobAdvertisementService;
 import kodlamaio.pgadminhrms.core.utilities.results.DataResult;
+import kodlamaio.pgadminhrms.core.utilities.results.ErrorDataResult;
 import kodlamaio.pgadminhrms.core.utilities.results.Result;
 import kodlamaio.pgadminhrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.pgadminhrms.core.utilities.results.SuccessResult;
@@ -42,8 +43,33 @@ public class JobAdvertisementManager implements JobAdvertisementService {
 	@Override
 	public DataResult<List<JobAdvertisement>> getAllJobAdvertisementByActivationState(boolean activationState) {
 
+		List<JobAdvertisement> advertiseList = this.jobAdvertisementDao.findAll();
+
+		for (JobAdvertisement jobAdvertise : advertiseList) {
+			if (!jobAdvertise.isActivationState())
+				return new ErrorDataResult<List<JobAdvertisement>>("Sistemde aktif iş ilanı bulunmamaktadır. ");
+		}
+
 		return new SuccessDataResult<List<JobAdvertisement>>(
 				this.jobAdvertisementDao.getByActivationState(activationState), "Aktif iş ilanları listelenmiştir. ");
+
+	}
+
+	@Override
+	public DataResult<JobAdvertisement> isAdvertiseActivationStateTrue(int id) {
+
+//		Boolean state = this.jobAdvertisementDao.isActivationStateTrue(id).isActivationState();
+		Boolean state = this.jobAdvertisementDao.getByIdAndIsActivationStateTrue(id).isActivationState();
+		if (state) {
+			return new SuccessDataResult<JobAdvertisement>(this.jobAdvertisementDao.getByIdAndIsActivationStateTrue(id),
+					"İlan aktiftir. ");
+		} else if (!this.jobAdvertisementDao.getByIdAndIsActivationStateTrue(id).isActivationState()) {
+
+			return new ErrorDataResult<JobAdvertisement>("İş ilanı artık aktif değildir. ");
+
+		}
+
+		return new ErrorDataResult<JobAdvertisement>("Sistemde böyle bir ilan yoktur. ");
 
 	}
 

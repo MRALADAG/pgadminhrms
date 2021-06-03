@@ -51,6 +51,13 @@ public class JobAdvertisementController {
 
 	}
 
+	@GetMapping("/isAdvertiseActivationStateTrue")
+	public DataResult<JobAdvertisement> isAdvertiseActivationStateTrue(@RequestParam int id) {
+
+		return this.jobAdvertisementService.isAdvertiseActivationStateTrue(id);
+
+	}
+
 	@GetMapping("/getById")
 	public DataResult<JobAdvertisement> getById(@RequestParam int id) {
 
