@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import kodlamaio.pgadminhrms.business.abstracts.JobAdvertisementService;
 import kodlamaio.pgadminhrms.core.utilities.results.DataResult;
 import kodlamaio.pgadminhrms.core.utilities.results.ErrorDataResult;
+import kodlamaio.pgadminhrms.core.utilities.results.ErrorResult;
 import kodlamaio.pgadminhrms.core.utilities.results.Result;
 import kodlamaio.pgadminhrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.pgadminhrms.core.utilities.results.SuccessResult;
@@ -55,22 +56,33 @@ public class JobAdvertisementManager implements JobAdvertisementService {
 
 	}
 
+//	@Override
+//	public DataResult<JobAdvertisement> isAdvertiseActivationStateTrue(int id) {
+//
+////		Boolean state = this.jobAdvertisementDao.isActivationStateTrue(id).isActivationState();
+//		Boolean state = this.jobAdvertisementDao.getByIdAndActivationStateIsTrue(id).isActivationState();
+//		if (state) {
+//			return new SuccessDataResult<JobAdvertisement>(this.jobAdvertisementDao.getByIdAndActivationStateIsTrue(id),
+//					"İlan aktiftir. ");
+//		} else if (!this.jobAdvertisementDao.getByIdAndActivationStateIsTrue(id).isActivationState()) {
+//
+//			return new ErrorDataResult<JobAdvertisement>("İş ilanı artık aktif değildir. ");
+//
+//		}
+//
+//		return new ErrorDataResult<JobAdvertisement>("Sistemde böyle bir ilan yoktur. ");
+//
+//	}
+
 	@Override
-	public DataResult<JobAdvertisement> isAdvertiseActivationStateTrue(int id) {
+	public Result existsByIdAndActivationStateIsTrue(int id) {
 
-//		Boolean state = this.jobAdvertisementDao.isActivationStateTrue(id).isActivationState();
-		Boolean state = this.jobAdvertisementDao.getByIdAndIsActivationStateTrue(id).isActivationState();
-		if (state) {
-			return new SuccessDataResult<JobAdvertisement>(this.jobAdvertisementDao.getByIdAndIsActivationStateTrue(id),
-					"İlan aktiftir. ");
-		} else if (!this.jobAdvertisementDao.getByIdAndIsActivationStateTrue(id).isActivationState()) {
-
-			return new ErrorDataResult<JobAdvertisement>("İş ilanı artık aktif değildir. ");
-
+		if (!existsById(id)) {
+			return new ErrorResult("Sistemde böyle bir ilan bulunmamaktadır. ");
+		} else if (this.jobAdvertisementDao.existsByIdAndActivationStateIsTrue(id)) {
+			return new SuccessResult("Aranan iş ilanı aktiftir.");
 		}
-
-		return new ErrorDataResult<JobAdvertisement>("Sistemde böyle bir ilan yoktur. ");
-
+		return new ErrorResult("Aranan iş ilanı yayından kaldırılmıştır.");
 	}
 
 	@Override
@@ -103,6 +115,13 @@ public class JobAdvertisementManager implements JobAdvertisementService {
 		return new SuccessDataResult<List<JobAdvertisement>>(
 				this.jobAdvertisementDao.findByEmployer_CompanyNameContainsIgnoreCase(companyName),
 				"İş verenin bütün ilanları listelenmiştir. ");
+
+	}
+
+	@Override
+	public boolean existsById(int id) {
+
+		return this.jobAdvertisementDao.existsById(id);
 
 	}
 

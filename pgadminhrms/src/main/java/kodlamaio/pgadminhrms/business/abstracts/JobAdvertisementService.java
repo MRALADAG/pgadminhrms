@@ -14,9 +14,12 @@ public interface JobAdvertisementService {
 
 	DataResult<List<JobAdvertisement>> getAllJobAdvertisementByActivationState(boolean activationState);
 
-	DataResult<JobAdvertisement> isAdvertiseActivationStateTrue(int id);
+//	DataResult<JobAdvertisement> isAdvertiseActivationStateTrue(int id);
+	Result existsByIdAndActivationStateIsTrue(int id);
 
 	DataResult<JobAdvertisement> findById(int id);
+
+	boolean existsById(int id);
 
 	DataResult<List<JobAdvertisement>> getAllJobAdvertisementByEmployerId(int id);
 

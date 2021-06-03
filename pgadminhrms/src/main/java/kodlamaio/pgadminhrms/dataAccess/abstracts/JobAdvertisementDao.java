@@ -14,9 +14,12 @@ public interface JobAdvertisementDao extends JpaRepository<JobAdvertisement, Int
 //	@Query("From JobAdvertisement WHERE activationState =:true and id=:id")
 //	JobAdvertisement isActivationStateTrue(int id);
 
-	JobAdvertisement getByIdAndIsActivationStateTrue(int id);
+//	JobAdvertisement getByIdAndActivationStateIsTrue(int id);
+	boolean existsByIdAndActivationStateIsTrue(int id);
 
 	JobAdvertisement findById(int id);
+
+	boolean existsById(int id);
 
 	List<JobAdvertisement> getByEmployer_id(int id);
 
