@@ -35,7 +35,7 @@ public class JobPositionManager implements JobPositionService {
 	public Result addJobPosition(JobPosition jobPosition) {
 
 		this.jobPositionDao.save(jobPosition);
-		return new SuccessResult("İş pozisyonu başarıyla eklendi.");
+		return new SuccessResult("İş pozisyonu başarıyla eklendi. ");
 
 	}
 

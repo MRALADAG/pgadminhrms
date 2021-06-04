@@ -13,6 +13,7 @@ public interface JobAdvertisementService {
 	Result addJobAdvertise(JobAdvertisement advertisement);
 
 	DataResult<List<JobAdvertisement>> getAllJobAdvertisementByActivationState(boolean activationState);
+//	List<JobAdvertisement> getByActivationState(boolean activationState);
 
 //	DataResult<JobAdvertisement> isAdvertiseActivationStateTrue(int id);
 	Result existsByIdAndActivationStateIsTrue(int id);
@@ -22,9 +23,28 @@ public interface JobAdvertisementService {
 	boolean existsById(int id);
 
 	DataResult<List<JobAdvertisement>> getAllJobAdvertisementByEmployerId(int id);
+//	List<JobAdvertisement> getByEmployer_Id(int id);
+
+	DataResult<List<JobAdvertisement>> getAllActiveJobAdvertisement();
+//	List<JobAdvertisement> findByActivationStateIsTrue();
+
+	DataResult<List<JobAdvertisement>> getAllActiveJobAdvertisementByEmployerId(int id);
+//	List<JobAdvertisement> findByEmployer_IdAndActivationStateIsTrue(int id);
+
+	DataResult<List<JobAdvertisement>> getAllActiveJobAdvertisementByEmployerName(String companyName);
+//	List<JobAdvertisement> findByEmployer_CompanyNameContainsIgnoreCaseAndActivationStateIsTrue(String companyName);
 
 	DataResult<JobAdvertisement> getByCompanyNameAndJobTitle(String companyName, String jobTitle);
+//	JobAdvertisement getByEmployer_CompanyNameAndJobPosition_JobTitleContainsIgnoreCase(String companyName,
+//			String jobTitle);
 
 	DataResult<List<JobAdvertisement>> getAllByCompanyName(String companyName);
+//	List<JobAdvertisement> findByEmployer_CompanyNameContainsIgnoreCase(String companyName);
+
+	DataResult<List<JobAdvertisement>> getAllAdvertiseByDateOfCreationAsc();
+//	List<JobAdvertisement> findAllOrderByDateOfCreationAsc();
+
+	DataResult<List<JobAdvertisement>> getAllAdvertiseByDateOfCreationDesc();
+//	List<JobAdvertisement> findAllOrderByDateOfCreationDesc();
 
 }

@@ -43,8 +43,8 @@ public class JobPosition {
 	@Column(name = "record_date")
 	private Date recordDate;
 
-	@OneToMany(mappedBy = "jobPosition")
+//	@OneToMany(mappedBy = "jobPosition")
 //	private JobAdvertisement advertise;
-	private List<JobAdvertisement> advertise;
+//	private List<JobAdvertisement> advertise;
 
 }

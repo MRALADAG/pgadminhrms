@@ -1,7 +1,5 @@
 package kodlamaio.pgadminhrms.entities.concretes;
 
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
@@ -36,15 +34,19 @@ public class Employer extends User {
 	// private int id;
 	// Bu kısım base tabloda olduğu için iptal edildi.
 
-	@NotBlank(message = "Şirket ismi boş bırakılamaz. ")
+	@NotBlank(message = "Şirket ismi boş bırakılamaz. \n")
 	@Column(name = "company_name")
 	private String companyName;
 
-	@NotBlank(message = "Web adresi boş bırakılamaz. ")
+	@NotBlank(message = "Web adresi boş bırakılamaz. \n")
 	@Column(name = "website")
 	private String website;
 
-	@OneToMany(mappedBy = "employer")
-	private List<JobAdvertisement> advertisements;
+//	@OneToMany(mappedBy = "employer")
+//	private List<JobAdvertisement> advertisements;
+
+// Eğer JobAdvertisement ile ilgili field'lar swagger'ı 
+// çalıştırdığımızda bir employer nesnesi görünmesin istiyorsak burada 
+// JobAdvertisement ile ilgili alanı mapped etmememiz gereklidir.
 
 }

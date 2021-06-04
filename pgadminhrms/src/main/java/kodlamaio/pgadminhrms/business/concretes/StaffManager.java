@@ -27,7 +27,8 @@ public class StaffManager implements StaffService {
 	@Override
 	public DataResult<List<Staff>> getAll() {
 
-		return new SuccessDataResult<List<Staff>>(this.staffDao.findAll(), "Sistem personelleri başarıyla listelendi.");
+		return new SuccessDataResult<List<Staff>>(this.staffDao.findAll(),
+				"Sistem personelleri başarıyla listelendi. ");
 
 	}
 
@@ -35,7 +36,7 @@ public class StaffManager implements StaffService {
 	public Result addStaff(Staff staff) {
 
 		this.staffDao.save(staff);
-		return new SuccessResult("Sistem personeli başarıyla eklendi.");
+		return new SuccessResult("Sistem personeli başarıyla eklendi. ");
 	}
 
 }

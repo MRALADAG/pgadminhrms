@@ -64,7 +64,7 @@ public class EmployeeManager implements EmployeeService {
 		// this.emailValidationService.isEmailValid().getMessage();
 		this.employeeDao.save(employee);
 		return new SuccessResult(
-				"İş arayan sisteme eklenmiştir." + this.emailValidationService.isEmailValid().getMessage());
+				"İş arayan sisteme eklenmiştir. " + this.emailValidationService.isEmailValid().getMessage() + " ");
 
 	}
 
@@ -73,7 +73,7 @@ public class EmployeeManager implements EmployeeService {
 		List<Employee> emloyeeId = this.employeeDao.findAll();
 		for (Employee employee1 : emloyeeId) {
 			if (employee.getNationalityNumber().equals(employee1.getNationalityNumber()))
-				return new ErrorResult("Daha önce aynı kimlik numarasıyla sistemde kayıt mevcuttur.");
+				return new ErrorResult("Daha önce aynı kimlik numarasıyla sistemde kayıt mevcuttur. ");
 
 		}
 
@@ -86,7 +86,7 @@ public class EmployeeManager implements EmployeeService {
 		List<User> userList = this.userDao.findAll();
 		for (User user : userList) {
 			if (employee.getEmail().equals(user.getEmail()))
-				return new ErrorResult("Daha önce aynı eposta adresiyle sistemde kayıt mevcuttur.");
+				return new ErrorResult("Daha önce aynı eposta adresiyle sistemde kayıt mevcuttur. \n");
 		}
 
 		return new SuccessResult();
@@ -104,7 +104,7 @@ public class EmployeeManager implements EmployeeService {
 	public Result deleteInEmployee(int id) {
 
 		this.employeeDao.deleteById(id);
-		return new SuccessResult("İş arayan kişinin kaydı silinmiştir.");
+		return new SuccessResult("İş arayan kişinin kaydı silinmiştir. \n");
 
 	}
 }

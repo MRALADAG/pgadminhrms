@@ -79,6 +79,28 @@ public class JobAdvertisementController {
 
 	}
 
+	@GetMapping("/getAllActiveJobAdvertisement")
+	public DataResult<List<JobAdvertisement>> getAllActiveJobAdvertisement() {
+
+		return this.jobAdvertisementService.getAllActiveJobAdvertisement();
+
+	}
+
+	@GetMapping("/getAllActiveJobAdvertisementByEmployerId")
+	public DataResult<List<JobAdvertisement>> getAllActiveJobAdvertisementByEmployerId(@RequestParam int id) {
+
+		return this.jobAdvertisementService.getAllActiveJobAdvertisementByEmployerId(id);
+
+	}
+
+	@GetMapping("/getAllActiveJobAdvertisementByEmployerName")
+	public DataResult<List<JobAdvertisement>> getAllActiveJobAdvertisementByEmployerName(
+			@RequestParam String companyName) {
+
+		return this.jobAdvertisementService.getAllActiveJobAdvertisementByEmployerName(companyName);
+
+	}
+
 	@GetMapping("/getByCompanyNameAndJobTitle")
 	public DataResult<JobAdvertisement> getByCompanyNameAndJobTitle(@RequestParam("companyName") String companyName,
 			@RequestParam("jobTitle") String jobTitle) {
@@ -91,6 +113,20 @@ public class JobAdvertisementController {
 	public DataResult<List<JobAdvertisement>> getAllByCompanyName(@RequestParam String companyName) {
 
 		return this.jobAdvertisementService.getAllByCompanyName(companyName);
+
+	}
+
+	@GetMapping("/getAllAdvertiseByDateOfCreationAsc")
+	public DataResult<List<JobAdvertisement>> getAllAdvertiseByDateOfCreationAsc() {
+
+		return this.jobAdvertisementService.getAllAdvertiseByDateOfCreationAsc();
+
+	}
+
+	@GetMapping("/getAllAdvertiseByDateOfCreationDesc")
+	public DataResult<List<JobAdvertisement>> getAllAdvertiseByDateOfCreationDesc() {
+
+		return this.jobAdvertisementService.getAllAdvertiseByDateOfCreationDesc();
 
 	}
 

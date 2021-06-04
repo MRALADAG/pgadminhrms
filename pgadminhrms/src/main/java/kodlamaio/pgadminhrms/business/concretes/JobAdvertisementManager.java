@@ -82,7 +82,7 @@ public class JobAdvertisementManager implements JobAdvertisementService {
 		} else if (this.jobAdvertisementDao.existsByIdAndActivationStateIsTrue(id)) {
 			return new SuccessResult("Aranan iş ilanı aktiftir.");
 		}
-		return new ErrorResult("Aranan iş ilanı yayından kaldırılmıştır.");
+		return new ErrorResult("Aranan iş ilanı yayından kaldırılmıştır. ");
 	}
 
 	@Override
@@ -96,8 +96,35 @@ public class JobAdvertisementManager implements JobAdvertisementService {
 	@Override
 	public DataResult<List<JobAdvertisement>> getAllJobAdvertisementByEmployerId(int id) {
 
-		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.getByEmployer_id(id),
-				"İlanlar iş verene göre listelenmiştir.");
+		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.getByEmployer_Id(id),
+				"İlanlar iş verene göre listelenmiştir. ");
+
+	}
+
+	@Override
+	public DataResult<List<JobAdvertisement>> getAllActiveJobAdvertisement() {
+
+		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.findByActivationStateIsTrue(),
+				"Sistemde kayıtlı bütün aktif iş ilanları listelenmiştir. ");
+
+	}
+
+	@Override
+	public DataResult<List<JobAdvertisement>> getAllActiveJobAdvertisementByEmployerId(int id) {
+
+		return new SuccessDataResult<List<JobAdvertisement>>(
+				this.jobAdvertisementDao.findByEmployer_IdAndActivationStateIsTrue(id),
+				"İş verenin vermiş olduğu bütün aktif iş ilanları iş veren id'sine göre listelenmiştir. ");
+
+	}
+
+	@Override
+	public DataResult<List<JobAdvertisement>> getAllActiveJobAdvertisementByEmployerName(String companyName) {
+
+		return new SuccessDataResult<List<JobAdvertisement>>(
+				this.jobAdvertisementDao
+						.findByEmployer_CompanyNameContainsIgnoreCaseAndActivationStateIsTrue(companyName),
+				"İş verenin vermiş olduğu bütün aktif iş ilanları iş veren id'sine göre listelenmiştir. ");
 
 	}
 
@@ -106,7 +133,7 @@ public class JobAdvertisementManager implements JobAdvertisementService {
 
 		return new SuccessDataResult<JobAdvertisement>(this.jobAdvertisementDao
 				.getByEmployer_CompanyNameAndJobPosition_JobTitleContainsIgnoreCase(companyName, jobTitle),
-				"İlan işveren ismine ve iş pozisyonuna göre getirilmiştir. ");
+				"İlan işveren ismine ve iş pozisyonuna göre getirilmiştir. \n");
 	}
 
 	@Override
@@ -122,6 +149,22 @@ public class JobAdvertisementManager implements JobAdvertisementService {
 	public boolean existsById(int id) {
 
 		return this.jobAdvertisementDao.existsById(id);
+
+	}
+
+	@Override
+	public DataResult<List<JobAdvertisement>> getAllAdvertiseByDateOfCreationAsc() {
+
+		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.findByOrderByDateOfCreationAsc(),
+				"İlan tarihine göre ilanlar artan sırada listelenmiştir. ");
+
+	}
+
+	@Override
+	public DataResult<List<JobAdvertisement>> getAllAdvertiseByDateOfCreationDesc() {
+
+		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.findByOrderByDateOfCreationDesc(),
+				"İlan tarihine göre ilanlar artan sırada listelenmiştir. ");
 
 	}
 

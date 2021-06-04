@@ -12,7 +12,7 @@ public class EmailValidationManager implements EmailValidationService {
 	@Override
 	public Result isEmailValid() {
 
-		return new SuccessResult("Eposta doğrulaması başarılıdır.");
+		return new SuccessResult("Eposta doğrulaması başarılıdır. ");
 
 	}
 

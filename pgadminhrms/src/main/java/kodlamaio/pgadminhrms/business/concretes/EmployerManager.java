@@ -51,8 +51,9 @@ public class EmployerManager implements EmployerService {
 		}
 
 		this.employerDao.save(employer);
-		return new SuccessResult("İşveren sisteme eklenmiştir. " + this.emailValidationService.isEmailValid() + " "
-				+ domainController(employer).getMessage() + " " + confirmationOfSystemAdmin(true).getMessage());
+		return new SuccessResult("İşveren sisteme eklenmiştir. " + " " + this.emailValidationService.isEmailValid()
+				+ " " + domainController(employer).getMessage() + " " + confirmationOfSystemAdmin(true).getMessage()
+				+ " ");
 
 	}
 
@@ -61,7 +62,7 @@ public class EmployerManager implements EmployerService {
 		List<Employer> userList = this.employerDao.findAll();
 		for (User user : userList) {
 			if (employer.getEmail().equals(user.getEmail()))
-				return new ErrorResult("Daha önce aynı eposta adresiyle sistemde kayıt mevcuttur.");
+				return new ErrorResult("Daha önce aynı eposta adresiyle sistemde kayıt mevcuttur. ");
 		}
 
 		return new SuccessResult();
@@ -75,11 +76,11 @@ public class EmployerManager implements EmployerService {
 		String[] mail = employer.getEmail().split("@", 2);
 		String employerEmail = mail[1];
 
-		if (webDomain != employerEmail) {
+		if (!webDomain.equals(employerEmail)) {
 			return new ErrorResult("Lütfen geçerli Email ve Web adresi giriniz. ");
+		} else {
+			return new SuccessResult("İşveren Domain doğrulaması başarılıdır. ");
 		}
-
-		return new SuccessResult("İşveren Domain doğrulaması başarılıdır. ");
 
 	}
 

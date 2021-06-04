@@ -26,7 +26,7 @@ public class UserVerificationManager implements UserVerificationService {
 	public DataResult<List<UserVerification>> getAllValidUser() {
 
 		return new SuccessDataResult<List<UserVerification>>(this.userVerificationDao.findAll(),
-				"Onaylanmış kullanıcılar listelenmiştir.");
+				"Onaylanmış kullanıcılar listelenmiştir. ");
 
 	}
 

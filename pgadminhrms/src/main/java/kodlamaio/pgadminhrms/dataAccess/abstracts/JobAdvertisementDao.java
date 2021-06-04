@@ -21,11 +21,21 @@ public interface JobAdvertisementDao extends JpaRepository<JobAdvertisement, Int
 
 	boolean existsById(int id);
 
-	List<JobAdvertisement> getByEmployer_id(int id);
+	List<JobAdvertisement> getByEmployer_Id(int id);
+
+	List<JobAdvertisement> findByActivationStateIsTrue();
+
+	List<JobAdvertisement> findByEmployer_IdAndActivationStateIsTrue(int id);
+
+	List<JobAdvertisement> findByEmployer_CompanyNameContainsIgnoreCaseAndActivationStateIsTrue(String companyName);
 
 	JobAdvertisement getByEmployer_CompanyNameAndJobPosition_JobTitleContainsIgnoreCase(String companyName,
 			String jobTitle);
 
 	List<JobAdvertisement> findByEmployer_CompanyNameContainsIgnoreCase(String companyName);
+
+	List<JobAdvertisement> findByOrderByDateOfCreationAsc();
+
+	List<JobAdvertisement> findByOrderByDateOfCreationDesc();
 
 }

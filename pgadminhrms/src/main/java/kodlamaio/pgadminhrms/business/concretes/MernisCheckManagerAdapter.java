@@ -15,7 +15,7 @@ public class MernisCheckManagerAdapter implements UserCheckService {
 
 		MernisCheck mernisCheck = new MernisCheck();
 		mernisCheck.isRealPerson();
-		return new SuccessResult("Mernis sorgusu başarılıdır.");
+		return new SuccessResult("Mernis sorgusu başarılıdır. ");
 
 	}
 

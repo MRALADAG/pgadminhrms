@@ -41,7 +41,7 @@ public class JobAdvertisement {
 	@Column(name = "max_salary")
 	private int maxSalary;
 
-	@NotBlank(message = "İş tanımı alanı boş bırakılamaz.")
+	@NotBlank(message = "İş tanımı alanı boş bırakılamaz. ")
 	@Column(name = "job_description")
 	private String jobDescription;
 
@@ -74,7 +74,7 @@ public class JobAdvertisement {
 	@JoinColumn(name = "employer_id")
 	private Employer employer;
 
-//	@NotBlank(message = "İş tanımı pozisyonu seçilmelidir.")
+//	@NotBlank(message = "İş tanımı pozisyonu seçilmelidir. ")
 //	@Column(name = "job_position_id")
 	@ManyToOne(targetEntity = JobPosition.class)
 	@JoinColumn(name = "job_position_id")
