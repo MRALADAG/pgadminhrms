@@ -44,7 +44,17 @@ public interface JobAdvertisementService {
 	DataResult<List<JobAdvertisement>> getAllAdvertiseByDateOfCreationAsc();
 //	List<JobAdvertisement> findAllOrderByDateOfCreationAsc();
 
+	DataResult<List<JobAdvertisement>> getAllActiveJobAdvertisementOrderByDateOfCreationAsc();
+//	List<JobAdvertisement> findByActivationStateIsTrueOrderByDateOfCreationAsc();
+
 	DataResult<List<JobAdvertisement>> getAllAdvertiseByDateOfCreationDesc();
 //	List<JobAdvertisement> findAllOrderByDateOfCreationDesc();
+
+	DataResult<List<JobAdvertisement>> getAllActiveJobAdvertisementOrderByDateOfCreationDesc();
+//	List<JobAdvertisement> findByActivationStateIsTrueOrderByDateOfCreationDesc();
+
+	DataResult<JobAdvertisement> getByIdAndEmployer_Id(int id, int employerId);
+
+	Result setActivationStateOfJobAdvertisementByEmployerIdAndAdvertisementId(int id, int employerId, boolean state);
 
 }

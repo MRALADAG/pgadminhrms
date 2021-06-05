@@ -123,10 +123,41 @@ public class JobAdvertisementController {
 
 	}
 
+	@GetMapping("/getAllActiveJobAdvertisementOrderByDateOfCreationAsc")
+	public DataResult<List<JobAdvertisement>> getAllActiveJobAdvertisementOrderByDateOfCreationAsc() {
+
+		return this.jobAdvertisementService.getAllActiveJobAdvertisementOrderByDateOfCreationAsc();
+
+	}
+
 	@GetMapping("/getAllAdvertiseByDateOfCreationDesc")
 	public DataResult<List<JobAdvertisement>> getAllAdvertiseByDateOfCreationDesc() {
 
 		return this.jobAdvertisementService.getAllAdvertiseByDateOfCreationDesc();
+
+	}
+
+	@GetMapping("/getAllActiveJobAdvertisementOrderByDateOfCreationDesc")
+	public DataResult<List<JobAdvertisement>> getAllActiveJobAdvertisementOrderByDateOfCreationDesc() {
+
+		return this.jobAdvertisementService.getAllActiveJobAdvertisementOrderByDateOfCreationDesc();
+
+	}
+
+	@GetMapping("/getByIdAndEmployer_Id")
+	public DataResult<JobAdvertisement> getByIdAndEmployer_Id(@RequestParam("id") int id,
+			@RequestParam("employerId") int employerId) {
+
+		return this.jobAdvertisementService.getByIdAndEmployer_Id(id, employerId);
+
+	}
+
+	@GetMapping("/setActivationStateOfJobAdvertisement")
+	public Result setActivationStateOfJobAdvertisementByEmployerIdAndAdvertisementId(@RequestParam("id") int id,
+			@RequestParam("employerId") int employerId, @RequestParam("activationState") boolean state) {
+
+		return this.jobAdvertisementService.setActivationStateOfJobAdvertisementByEmployerIdAndAdvertisementId(id,
+				employerId, state);
 
 	}
 

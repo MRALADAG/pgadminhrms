@@ -17,6 +17,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -54,6 +55,11 @@ public class JobAdvertisement {
 	@Column(name = "creation_date")
 //	private java.util.Date dateOfCreation;
 	private Date dateOfCreation;
+	
+	@UpdateTimestamp
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "update_time")
+	private Date updateTime;
 
 	@Column(name = "activation_state")
 	private boolean activationState;

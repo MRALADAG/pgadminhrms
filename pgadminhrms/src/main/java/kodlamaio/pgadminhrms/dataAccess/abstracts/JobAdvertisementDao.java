@@ -36,6 +36,12 @@ public interface JobAdvertisementDao extends JpaRepository<JobAdvertisement, Int
 
 	List<JobAdvertisement> findByOrderByDateOfCreationAsc();
 
+	List<JobAdvertisement> findByActivationStateIsTrueOrderByDateOfCreationAsc();
+
 	List<JobAdvertisement> findByOrderByDateOfCreationDesc();
+
+	List<JobAdvertisement> findByActivationStateIsTrueOrderByDateOfCreationDesc();
+
+	JobAdvertisement getByIdAndEmployer_Id(int id, int employerId);
 
 }

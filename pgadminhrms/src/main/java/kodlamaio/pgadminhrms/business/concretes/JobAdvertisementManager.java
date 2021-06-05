@@ -156,7 +156,16 @@ public class JobAdvertisementManager implements JobAdvertisementService {
 	public DataResult<List<JobAdvertisement>> getAllAdvertiseByDateOfCreationAsc() {
 
 		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.findByOrderByDateOfCreationAsc(),
-				"İlan tarihine göre ilanlar artan sırada listelenmiştir. ");
+				"İlan tarihine göre aktif ilanlar artan sırada listelenmiştir. ");
+
+	}
+
+	@Override
+	public DataResult<List<JobAdvertisement>> getAllActiveJobAdvertisementOrderByDateOfCreationAsc() {
+
+		return new SuccessDataResult<List<JobAdvertisement>>(
+				this.jobAdvertisementDao.findByActivationStateIsTrueOrderByDateOfCreationAsc(),
+				"İlan tarihine göre aktif ilanlar artan sırada listelenmiştir. ");
 
 	}
 
@@ -164,7 +173,35 @@ public class JobAdvertisementManager implements JobAdvertisementService {
 	public DataResult<List<JobAdvertisement>> getAllAdvertiseByDateOfCreationDesc() {
 
 		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.findByOrderByDateOfCreationDesc(),
-				"İlan tarihine göre ilanlar artan sırada listelenmiştir. ");
+				"İlan tarihine göre aktif ilanlar azalan sırada listelenmiştir. ");
+
+	}
+
+	@Override
+	public DataResult<List<JobAdvertisement>> getAllActiveJobAdvertisementOrderByDateOfCreationDesc() {
+
+		return new SuccessDataResult<List<JobAdvertisement>>(
+				this.jobAdvertisementDao.findByActivationStateIsTrueOrderByDateOfCreationDesc(),
+				"İlan tarihine göre aktif ilanlar azalan sırada listelenmiştir. ");
+
+	}
+
+	@Override
+	public DataResult<JobAdvertisement> getByIdAndEmployer_Id(int id, int employerId) {
+
+		return new SuccessDataResult<JobAdvertisement>(this.jobAdvertisementDao.getByIdAndEmployer_Id(id, employerId),
+				"İlan numarası ve işveren no'ya göre ilan getirildi. ");
+
+	}
+
+	@Override
+	public Result setActivationStateOfJobAdvertisementByEmployerIdAndAdvertisementId(int id, int employerId,
+			boolean state) {
+
+		JobAdvertisement temp = this.jobAdvertisementDao.getByIdAndEmployer_Id(id, employerId);
+		temp.setActivationState(state);
+		this.jobAdvertisementDao.save(temp);
+		return new SuccessResult("İlanın yayın güncellenmiştir. ");
 
 	}
 
