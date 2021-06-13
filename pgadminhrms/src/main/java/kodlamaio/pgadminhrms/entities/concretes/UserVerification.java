@@ -29,7 +29,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-//@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler", "adminUser" })
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler", "adminUser" })
 
 public class UserVerification {
 

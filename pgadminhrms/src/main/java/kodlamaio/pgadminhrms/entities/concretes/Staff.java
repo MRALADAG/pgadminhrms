@@ -26,7 +26,7 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
 @AllArgsConstructor
-//@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler", "userVerification" })
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler", "userVerification" })
 
 public class Staff extends User {
 
@@ -56,7 +56,7 @@ public class Staff extends User {
 //	@OneToOne(targetEntity = UserVerification.class, cascade = CascadeType.ALL)
 //	private UserVerification userVerification;
 
-//	@OneToMany(mappedBy = "adminUser", cascade = CascadeType.ALL)
-//	private List<UserVerification> userVerification;
+	@OneToMany(mappedBy = "adminUser", cascade = CascadeType.ALL)
+	private List<UserVerification> userVerification;
 
 }
