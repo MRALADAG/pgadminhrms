@@ -12,4 +12,10 @@ public interface StaffService {
 
 	Result addStaff(Staff staff);
 
+	DataResult<Staff> getByStaffId(int id);
+
+	DataResult<Staff> getByStaffFirstNameOrLastName(String firstName, String LastName);
+
+	Result activateEmployer(int employerId, int staffId, boolean state);
+
 }

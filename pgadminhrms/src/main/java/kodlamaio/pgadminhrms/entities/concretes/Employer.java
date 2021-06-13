@@ -1,11 +1,13 @@
 package kodlamaio.pgadminhrms.entities.concretes;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
@@ -22,7 +24,7 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
 @AllArgsConstructor
-@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler", "advertisements" })
+//@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler", "advertisements" })
 
 public class Employer extends User {
 
@@ -34,13 +36,17 @@ public class Employer extends User {
 	// private int id;
 	// Bu kısım base tabloda olduğu için iptal edildi.
 
-	@NotBlank(message = "Şirket ismi boş bırakılamaz. \n")
+	@NotBlank(message = "Şirket ismi boş bırakılamaz. ")
 	@Column(name = "company_name")
 	private String companyName;
 
-	@NotBlank(message = "Web adresi boş bırakılamaz. \n")
+	@NotBlank(message = "Web adresi boş bırakılamaz. ")
 	@Column(name = "website")
 	private String website;
+
+//	@JsonIgnore
+	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+	private UserVerification userVerification;
 
 //	@OneToMany(mappedBy = "employer")
 //	private List<JobAdvertisement> advertisements;

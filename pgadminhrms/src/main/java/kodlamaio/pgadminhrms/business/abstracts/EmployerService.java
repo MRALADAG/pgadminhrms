@@ -12,4 +12,6 @@ public interface EmployerService {
 
 	Result addEmployer(Employer employer);
 
+	Employer getById(int id);
+
 }

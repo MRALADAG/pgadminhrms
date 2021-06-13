@@ -17,10 +17,13 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Entity
@@ -29,7 +32,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Inheritance(strategy = InheritanceType.JOINED)
-@EqualsAndHashCode(callSuper = false)
 
 public class User {
 
@@ -47,19 +49,41 @@ public class User {
 	@Column(name = "email")
 	private String email;
 
+	@JsonProperty(access = Access.WRITE_ONLY)
 	@NotBlank(message = "Parola alanı boş bırakılamaz. ")
 	@Size(min = 9, message = "Parola alanı en az 9 karakter olmalıdır. ")
 	@Column(name = "password")
 	private String password;
+
+	@JsonProperty(access = Access.READ_ONLY)
+	@Column(name = "is_active")
+	private boolean isActive = true;
 
 	@CreationTimestamp
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "record_date")
 	private Date recordDate;
 
+	@UpdateTimestamp
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "modify_date")
+	private Date modifyDate;
+
+	@JsonProperty(access = Access.READ_ONLY)
+	@Column(name = "is_verified")
+	private boolean isVerified = false;
+
+//	@JsonIgnore
+//	@ManyToOne(targetEntity = UserVerification.class, cascade = CascadeType.ALL)
+//	private UserVerification userVerification;
+
+//	@JsonIgnore
+//	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+//	private UserVerification userVerification;
+
 	// Burada dikkat edilmesi gereken husus eğer tarihle ilgili bir field
 	// tanımlanacaksa değişken türünün java.util.date belirtilmesi gerekir. Ayrıca
-	// tarihle ilgili alanlarda @Temporal anatasyonunun kullanılması şarttır. Bu
+	// tarihle ilgili alanlarda @Temporal anotasyonunun kullanılması şarttır. Bu
 	// anotasyonun içerisinde ise örneğin; @Temporal(TemporalType.TIMESTAMP)
 	// şeklinde değişkene atanacak değerin hangi türde tarih verisinin olduğu
 	// belirtilmelidir. Bu anatasyonun içerisine duruma göre TemporalType.TIMESTAMP,

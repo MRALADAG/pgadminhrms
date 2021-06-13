@@ -50,6 +50,8 @@ public class EmployerManager implements EmployerService {
 			return new ErrorResult(confirmationOfSystemAdmin(false).getMessage());
 		}
 
+		employer.setVerified(false);
+
 		this.employerDao.save(employer);
 		return new SuccessResult("İşveren sisteme eklenmiştir. " + " " + this.emailValidationService.isEmailValid()
 				+ " " + domainController(employer).getMessage() + " " + confirmationOfSystemAdmin(true).getMessage()
@@ -90,6 +92,13 @@ public class EmployerManager implements EmployerService {
 			return new ErrorResult("Sistem personeli tarafından üyelik talebiniz reddedildi. ");
 		}
 		return new SuccessResult("Sistem personeli tarafından onaylandınız. ");
+	}
+
+	@Override
+	public Employer getById(int id) {
+
+		return this.employerDao.findById(id);
+
 	}
 
 }

@@ -2,6 +2,7 @@ package kodlamaio.pgadminhrms.entities.concretes;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -55,11 +56,11 @@ public class JobAdvertisement {
 	@Column(name = "creation_date")
 //	private java.util.Date dateOfCreation;
 	private Date dateOfCreation;
-	
+
 	@UpdateTimestamp
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "update_time")
-	private Date updateTime;
+	@Column(name = "modify_date")
+	private Date modifyDate;
 
 	@Column(name = "activation_state")
 	private boolean activationState;
@@ -76,17 +77,17 @@ public class JobAdvertisement {
 	@Column(name = "number_of_recruited")
 	private int numberOfRecruited;
 
-	@ManyToOne(targetEntity = Employer.class)
+	@ManyToOne(targetEntity = Employer.class, cascade = CascadeType.ALL)
 	@JoinColumn(name = "employer_id")
 	private Employer employer;
 
 //	@NotBlank(message = "İş tanımı pozisyonu seçilmelidir. ")
 //	@Column(name = "job_position_id")
-	@ManyToOne(targetEntity = JobPosition.class)
+	@ManyToOne(targetEntity = JobPosition.class, cascade = CascadeType.ALL)
 	@JoinColumn(name = "job_position_id")
 	private JobPosition jobPosition;
 
-	@ManyToOne(targetEntity = City.class)
+	@ManyToOne(targetEntity = City.class, cascade = CascadeType.ALL)
 	@JoinColumn(name = "city_name_id")
 	private City city;
 

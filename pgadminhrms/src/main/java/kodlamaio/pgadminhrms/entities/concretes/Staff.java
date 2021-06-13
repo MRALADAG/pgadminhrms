@@ -1,14 +1,19 @@
 package kodlamaio.pgadminhrms.entities.concretes;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,6 +26,7 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
 @AllArgsConstructor
+//@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler", "userVerification" })
 
 public class Staff extends User {
 
@@ -45,5 +51,12 @@ public class Staff extends User {
 	@Temporal(TemporalType.DATE)
 	@Column(name = "birthday")
 	private Date birthDay;
+
+//	@JsonIgnore
+//	@OneToOne(targetEntity = UserVerification.class, cascade = CascadeType.ALL)
+//	private UserVerification userVerification;
+
+//	@OneToMany(mappedBy = "adminUser", cascade = CascadeType.ALL)
+//	private List<UserVerification> userVerification;
 
 }

@@ -133,7 +133,7 @@ public class JobAdvertisementManager implements JobAdvertisementService {
 
 		return new SuccessDataResult<JobAdvertisement>(this.jobAdvertisementDao
 				.getByEmployer_CompanyNameAndJobPosition_JobTitleContainsIgnoreCase(companyName, jobTitle),
-				"İlan işveren ismine ve iş pozisyonuna göre getirilmiştir. \n");
+				"İlan işveren ismine ve iş pozisyonuna göre getirilmiştir. ");
 	}
 
 	@Override
@@ -156,7 +156,7 @@ public class JobAdvertisementManager implements JobAdvertisementService {
 	public DataResult<List<JobAdvertisement>> getAllAdvertiseByDateOfCreationAsc() {
 
 		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.findByOrderByDateOfCreationAsc(),
-				"İlan tarihine göre aktif ilanlar artan sırada listelenmiştir. ");
+				"İlan tarihine göre ilanlar artan sırada listelenmiştir. ");
 
 	}
 
@@ -173,7 +173,7 @@ public class JobAdvertisementManager implements JobAdvertisementService {
 	public DataResult<List<JobAdvertisement>> getAllAdvertiseByDateOfCreationDesc() {
 
 		return new SuccessDataResult<List<JobAdvertisement>>(this.jobAdvertisementDao.findByOrderByDateOfCreationDesc(),
-				"İlan tarihine göre aktif ilanlar azalan sırada listelenmiştir. ");
+				"İlan tarihine göre ilanlar azalan sırada listelenmiştir. ");
 
 	}
 
@@ -201,7 +201,7 @@ public class JobAdvertisementManager implements JobAdvertisementService {
 		JobAdvertisement temp = this.jobAdvertisementDao.getByIdAndEmployer_Id(id, employerId);
 		temp.setActivationState(state);
 		this.jobAdvertisementDao.save(temp);
-		return new SuccessResult("İlanın yayın güncellenmiştir. ");
+		return new SuccessResult("İlanın yayını güncellenmiştir. ");
 
 	}
 
