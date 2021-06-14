@@ -9,6 +9,8 @@ import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -44,7 +46,11 @@ public class Employer extends User {
 	@Column(name = "website")
 	private String website;
 
-//	@JsonIgnore
+	@JsonIgnore
+	@Column(name = "is_confirmed_by_staff")
+	private boolean isConfirmedByStaff;
+
+	@JsonIgnore
 	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
 	private UserVerification userVerification;
 

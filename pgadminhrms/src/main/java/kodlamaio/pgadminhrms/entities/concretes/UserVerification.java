@@ -19,6 +19,8 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -29,7 +31,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler", "adminUser" })
+//@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler", "user" })
 
 public class UserVerification {
 
@@ -38,11 +40,13 @@ public class UserVerification {
 	@Column(name = "id")
 	private int id;
 
+//	@JsonProperty(access = Access.READ_ONLY)
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "company_id", referencedColumnName = "id")
+	private Employer user;
+
 //	@Column(name = "company_id")
 //	private int userId;
-
-	@Column(name = "validation_state")
-	private boolean validation_state = false;
 
 	@CreationTimestamp
 	@Temporal(TemporalType.TIMESTAMP)
@@ -54,6 +58,9 @@ public class UserVerification {
 	@Column(name = "modify_time")
 	private Date modifyTime;
 
+	@Column(name = "validation_state")
+	private boolean validationState = false;
+
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "system_admin_id")
 	private Staff adminUser;
@@ -61,10 +68,5 @@ public class UserVerification {
 //	@JsonIgnore
 //	@OneToMany(cascade = CascadeType.ALL)
 //	private User user;
-
-//	@JsonIgnore
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "company_id", referencedColumnName = "id")
-	private Employer user;
 
 }

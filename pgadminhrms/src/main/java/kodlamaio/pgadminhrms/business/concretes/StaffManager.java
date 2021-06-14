@@ -33,8 +33,9 @@ public class StaffManager implements StaffService {
 		this.staffDao = staffDao;
 		this.employerService = employerService;
 		this.userVerificationService = userVerificationService;
-		this.userVerification = new UserVerification();
+
 		this.employer = new Employer();
+		this.userVerification = new UserVerification();
 	}
 
 	@Override
@@ -68,11 +69,15 @@ public class StaffManager implements StaffService {
 
 	private void confirmEmployer(int employerId, int staffId, boolean state) {
 
-		employer = this.employerService.getById(employerId);
-		userVerification.setUser(employer);
-		userVerification.setValidation_state(state);
-		userVerification.setAdminUser(this.staffDao.findById(staffId));
-		userVerificationService.addValidEmployer(this.userVerification);
+		this.employer = this.employerService.getById(employerId);
+		this.employer.setConfirmedByStaff(state);
+		// Burada employers tablosunun onay kolonu sistem personeli tarafından set
+		// ediliyor.
+
+		this.userVerification.setUser(this.employer);
+		this.userVerification.setValidationState(state);
+		this.userVerification.setAdminUser(this.staffDao.findById(staffId));
+		this.userVerificationService.addValidEmployer(this.userVerification);
 
 	}
 
