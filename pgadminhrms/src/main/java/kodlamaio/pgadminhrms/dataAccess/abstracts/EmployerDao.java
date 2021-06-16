@@ -6,6 +6,6 @@ import kodlamaio.pgadminhrms.entities.concretes.Employer;
 
 public interface EmployerDao extends JpaRepository<Employer, Integer> {
 
-	Employer findById(int id);
+	// Employer findById(int id);
 
 }

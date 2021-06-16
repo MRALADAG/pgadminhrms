@@ -26,7 +26,7 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
 @AllArgsConstructor
-@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler", "advertisements", "userVerification" })
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler", "advertisements" })
 
 public class Employer extends User {
 

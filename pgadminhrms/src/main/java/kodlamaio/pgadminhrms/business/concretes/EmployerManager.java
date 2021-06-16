@@ -97,7 +97,7 @@ public class EmployerManager implements EmployerService {
 	@Override
 	public Employer getById(int id) {
 
-		return this.employerDao.findById(id);
+		return this.employerDao.findById(id).get();
 
 	}
 

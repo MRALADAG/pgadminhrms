@@ -24,7 +24,7 @@ public class StaffManager implements StaffService {
 	private EmployerService employerService;
 	private UserVerificationService userVerificationService;
 	private UserVerification userVerification;
-	private Employer employer;
+	private Employer employer = null;
 
 	@Autowired
 	public StaffManager(StaffDao staffDao, EmployerService employerService,
@@ -34,8 +34,8 @@ public class StaffManager implements StaffService {
 		this.employerService = employerService;
 		this.userVerificationService = userVerificationService;
 
-		this.employer = new Employer();
-		this.userVerification = new UserVerification();
+//		this.employer = new Employer();
+//		this.userVerification = new UserVerification();
 	}
 
 	@Override
@@ -69,11 +69,13 @@ public class StaffManager implements StaffService {
 
 	private void confirmEmployer(int employerId, int staffId, boolean state) {
 
+//		this.employer = new Employer();
 		this.employer = this.employerService.getById(employerId);
 		this.employer.setConfirmedByStaff(state);
 		// Burada employers tablosunun onay kolonu sistem personeli tarafından set
 		// ediliyor.
 
+		this.userVerification = new UserVerification();
 		this.userVerification.setUser(this.employer);
 		this.userVerification.setValidationState(state);
 		this.userVerification.setAdminUser(this.staffDao.findById(staffId));
@@ -85,7 +87,7 @@ public class StaffManager implements StaffService {
 	public Result activateEmployer(int employerId, int staffId, boolean state) {
 
 		confirmEmployer(employerId, staffId, state);
-		return new SuccessResult("İş veren kaydı sistem personeli tarafından anaylanmıştır.");
+		return new SuccessResult("İş veren kaydı sistem personeli tarafından onaylanmıştır.");
 
 	}
 
