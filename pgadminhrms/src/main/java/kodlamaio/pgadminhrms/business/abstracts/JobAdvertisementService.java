@@ -5,6 +5,7 @@ import java.util.List;
 import kodlamaio.pgadminhrms.core.utilities.results.DataResult;
 import kodlamaio.pgadminhrms.core.utilities.results.Result;
 import kodlamaio.pgadminhrms.entities.concretes.JobAdvertisement;
+import kodlamaio.pgadminhrms.entities.dtos.JobAdvertisementDto;
 
 public interface JobAdvertisementService {
 
@@ -56,5 +57,9 @@ public interface JobAdvertisementService {
 	DataResult<JobAdvertisement> getByIdAndEmployer_Id(int id, int employerId);
 
 	Result setActivationStateOfJobAdvertisementByEmployerIdAndAdvertisementId(int id, int employerId, boolean state);
+
+	DataResult<List<JobAdvertisementDto>> getAllJobAdvertisementDto();
+
+	Result addJobAdvertisementDto(JobAdvertisementDto advertisementDto);
 
 }

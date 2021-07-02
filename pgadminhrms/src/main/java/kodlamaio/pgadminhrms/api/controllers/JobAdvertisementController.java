@@ -16,6 +16,7 @@ import kodlamaio.pgadminhrms.business.abstracts.JobAdvertisementService;
 import kodlamaio.pgadminhrms.core.utilities.results.DataResult;
 import kodlamaio.pgadminhrms.core.utilities.results.Result;
 import kodlamaio.pgadminhrms.entities.concretes.JobAdvertisement;
+import kodlamaio.pgadminhrms.entities.dtos.JobAdvertisementDto;
 
 @RestController
 @RequestMapping("api/jobadvertisement")
@@ -158,6 +159,20 @@ public class JobAdvertisementController {
 
 		return this.jobAdvertisementService.setActivationStateOfJobAdvertisementByEmployerIdAndAdvertisementId(id,
 				employerId, state);
+
+	}
+
+	@GetMapping("/getAllJobAdvertisementDto")
+	public DataResult<List<JobAdvertisementDto>> getAllJobAdvertisementDto() {
+
+		return this.jobAdvertisementService.getAllJobAdvertisementDto();
+
+	}
+
+	@PostMapping("/addJobAdvertisementDto")
+	Result addJobAdvertisementDto(@RequestBody JobAdvertisementDto advertisementDto) {
+
+		return this.jobAdvertisementService.addJobAdvertisementDto(advertisementDto);
 
 	}
 

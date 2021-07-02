@@ -14,6 +14,7 @@ import kodlamaio.pgadminhrms.business.abstracts.UserVerificationService;
 import kodlamaio.pgadminhrms.core.utilities.results.DataResult;
 import kodlamaio.pgadminhrms.core.utilities.results.Result;
 import kodlamaio.pgadminhrms.entities.concretes.UserVerification;
+import kodlamaio.pgadminhrms.entities.dtos.UserVerificationDto;
 
 @RestController
 @RequestMapping("/api/UserVerification")
@@ -45,6 +46,13 @@ public class UserVerificationController {
 	public Result deleteUserById(@RequestParam int id) {
 
 		return this.userVerificationService.deleteUserById(id);
+
+	}
+
+	@GetMapping("/getAllValidUserDto")
+	public DataResult<List<UserVerificationDto>> getAllValidUserDto() {
+
+		return this.userVerificationService.getAllValidUserDto();
 
 	}
 

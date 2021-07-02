@@ -51,7 +51,9 @@ public class Employer extends User {
 	private boolean isConfirmedByStaff;
 
 	@JsonIgnore
-	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+//	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+//	@OneToOne(mappedBy = "company", cascade = CascadeType.ALL)
+	@OneToOne(mappedBy = "company")
 	private UserVerification userVerification;
 
 //	@OneToMany(mappedBy = "employer")

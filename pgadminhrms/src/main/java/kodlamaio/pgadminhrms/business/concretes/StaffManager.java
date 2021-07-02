@@ -76,7 +76,7 @@ public class StaffManager implements StaffService {
 		// ediliyor.
 
 		this.userVerification = new UserVerification();
-		this.userVerification.setUser(this.employer);
+		this.userVerification.setCompany(this.employer);
 		this.userVerification.setValidationState(state);
 		this.userVerification.setAdminUser(this.staffDao.findById(staffId));
 		this.userVerificationService.addValidEmployer(this.userVerification);

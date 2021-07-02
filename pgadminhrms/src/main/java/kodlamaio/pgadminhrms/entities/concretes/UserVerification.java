@@ -43,7 +43,8 @@ public class UserVerification {
 //	@JsonProperty(access = Access.READ_ONLY)
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "company_id", referencedColumnName = "id")
-	private Employer user;
+//	private Employer user;
+	private Employer company;
 
 //	@Column(name = "company_id")
 //	private int userId;

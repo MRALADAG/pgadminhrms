@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import kodlamaio.pgadminhrms.business.abstracts.EmployerService;
+import kodlamaio.pgadminhrms.business.abstracts.DtoConverterService;
 import kodlamaio.pgadminhrms.business.abstracts.UserVerificationService;
 import kodlamaio.pgadminhrms.core.utilities.results.DataResult;
 import kodlamaio.pgadminhrms.core.utilities.results.Result;
@@ -13,16 +13,21 @@ import kodlamaio.pgadminhrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.pgadminhrms.core.utilities.results.SuccessResult;
 import kodlamaio.pgadminhrms.dataAccess.abstracts.UserVerificationDao;
 import kodlamaio.pgadminhrms.entities.concretes.UserVerification;
+import kodlamaio.pgadminhrms.entities.dtos.UserVerificationDto;
 
 @Service
 public class UserVerificationManager implements UserVerificationService {
 
 	private UserVerificationDao userVerificationDao;
+	private DtoConverterService dtoConverterService;
 
 	@Autowired
-	public UserVerificationManager(UserVerificationDao userVerificationDao, EmployerService employerService) {
+	public UserVerificationManager(UserVerificationDao userVerificationDao, DtoConverterService dtoConverterService) {
+
 		super();
 		this.userVerificationDao = userVerificationDao;
+		this.dtoConverterService = dtoConverterService;
+
 	}
 
 	@Override
@@ -45,6 +50,24 @@ public class UserVerificationManager implements UserVerificationService {
 
 		this.userVerificationDao.deleteById(id);
 		return new SuccessResult("Kayıt silinmiştir.");
+
+	}
+
+	@Override
+	public DataResult<List<UserVerificationDto>> getAllValidUserDto() {
+
+		return new SuccessDataResult<List<UserVerificationDto>>(
+				dtoConverterService.dtoConverter(userVerificationDao.findAll(), UserVerificationDto.class),
+				"Dto'lar getirildi");
+
+	}
+
+	@Override
+	public Result addValidUserDto(UserVerificationDto userVerificationDto) {
+
+		this.userVerificationDao.save(
+				(UserVerification) dtoConverterService.dtoClassConverter(userVerificationDto, UserVerification.class));
+		return new SuccessResult("VerificationDto eklendi.");
 
 	}
 

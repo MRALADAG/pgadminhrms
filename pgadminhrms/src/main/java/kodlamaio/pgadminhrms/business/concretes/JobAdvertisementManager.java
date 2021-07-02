@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kodlamaio.pgadminhrms.business.abstracts.DtoConverterService;
 import kodlamaio.pgadminhrms.business.abstracts.JobAdvertisementService;
 import kodlamaio.pgadminhrms.core.utilities.results.DataResult;
 import kodlamaio.pgadminhrms.core.utilities.results.ErrorDataResult;
@@ -12,18 +13,25 @@ import kodlamaio.pgadminhrms.core.utilities.results.ErrorResult;
 import kodlamaio.pgadminhrms.core.utilities.results.Result;
 import kodlamaio.pgadminhrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.pgadminhrms.core.utilities.results.SuccessResult;
+import kodlamaio.pgadminhrms.dataAccess.abstracts.CityDao;
 import kodlamaio.pgadminhrms.dataAccess.abstracts.JobAdvertisementDao;
 import kodlamaio.pgadminhrms.entities.concretes.JobAdvertisement;
+import kodlamaio.pgadminhrms.entities.dtos.JobAdvertisementDto;
 
 @Service
 public class JobAdvertisementManager implements JobAdvertisementService {
 
 	private JobAdvertisementDao jobAdvertisementDao;
+	private DtoConverterService dtoConverterService;
+	private CityDao cityDao;
 
 	@Autowired
-	public JobAdvertisementManager(JobAdvertisementDao jobAdvertisementDao) {
+	public JobAdvertisementManager(JobAdvertisementDao jobAdvertisementDao, DtoConverterService dtoConverterService,
+			CityDao cityDao) {
 		super();
 		this.jobAdvertisementDao = jobAdvertisementDao;
+		this.dtoConverterService = dtoConverterService;
+		this.cityDao = cityDao;
 	}
 
 	@Override
@@ -202,6 +210,32 @@ public class JobAdvertisementManager implements JobAdvertisementService {
 		temp.setActivationState(state);
 		this.jobAdvertisementDao.save(temp);
 		return new SuccessResult("İlanın yayını güncellenmiştir. ");
+
+	}
+
+	@Override
+	public DataResult<List<JobAdvertisementDto>> getAllJobAdvertisementDto() {
+
+		return new SuccessDataResult<List<JobAdvertisementDto>>(
+				this.dtoConverterService.dtoConverter(this.jobAdvertisementDao.findAll(), JobAdvertisementDto.class));
+
+	}
+
+	@Override
+	public Result addJobAdvertisementDto(JobAdvertisementDto advertisementDto) {
+
+//		if (advertisementDto.getCityId() > 0 && !this.cityDao.existsById(advertisementDto.getCityId())) {
+//			return new ErrorResult("City id bulunamadı.");
+//		}
+//		JobAdvertisement advertisement = new JobAdvertisement();
+//		advertisement.setJobDescription(advertisementDto.getJobDescription());
+//		advertisement.setMaxSalary(advertisementDto.getMaxSalary());
+//		advertisement.setMinSalary(advertisementDto.getMinSalary());
+//		advertisement.setCity(this.cityDao.findById(advertisementDto.getCityId()).get());
+//		this.jobAdvertisementDao.save(advertisement);
+		this.jobAdvertisementDao.save(
+				(JobAdvertisement) dtoConverterService.dtoClassConverter(advertisementDto, JobAdvertisement.class));
+		return new SuccessResult("JobAdvertisementDto oluşturuldu.");
 
 	}
 

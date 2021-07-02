@@ -20,6 +20,8 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -66,7 +68,7 @@ public class JobAdvertisement {
 	private boolean activationState;
 
 	@Temporal(TemporalType.DATE)
-//	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
 //	@NotBlank(message = "Son başvuru tarihi belirtilmelidir.")
 	@Column(name = "deadline")
 //	private java.util.Date deadline;
@@ -77,18 +79,21 @@ public class JobAdvertisement {
 	@Column(name = "number_of_recruited")
 	private int numberOfRecruited;
 
-	@ManyToOne(targetEntity = Employer.class, cascade = CascadeType.ALL)
-	@JoinColumn(name = "employer_id")
+//	@ManyToOne(targetEntity = Employer.class, cascade = CascadeType.ALL)
+	@ManyToOne(targetEntity = Employer.class)
+	@JoinColumn(name = "employer_id", referencedColumnName = "id", nullable = false)
 	private Employer employer;
 
 //	@NotBlank(message = "İş tanımı pozisyonu seçilmelidir. ")
 //	@Column(name = "job_position_id")
-	@ManyToOne(targetEntity = JobPosition.class, cascade = CascadeType.ALL)
-	@JoinColumn(name = "job_position_id")
+//	@ManyToOne(targetEntity = JobPosition.class, cascade = CascadeType.ALL)
+	@ManyToOne(targetEntity = JobPosition.class)
+	@JoinColumn(name = "job_position_id", referencedColumnName = "id", nullable = false)
 	private JobPosition jobPosition;
 
-	@ManyToOne(targetEntity = City.class, cascade = CascadeType.ALL)
-	@JoinColumn(name = "city_name_id")
+//	@ManyToOne(targetEntity = City.class, cascade = CascadeType.ALL)
+	@ManyToOne(targetEntity = City.class)
+	@JoinColumn(name = "city_name_id", referencedColumnName = "id", nullable = false)
 	private City city;
 
 }
