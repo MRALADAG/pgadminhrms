@@ -14,4 +14,8 @@ public interface EmployerService {
 
 	Employer getById(int id);
 
+	boolean existsByEmailIgnoreCase(String email);
+
+	DataResult<Employer> findByEmailIgnoreCase(String email);
+
 }

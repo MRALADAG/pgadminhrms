@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kodlamaio.pgadminhrms.business.abstracts.DtoConverterService;
 import kodlamaio.pgadminhrms.business.abstracts.EmployerService;
 import kodlamaio.pgadminhrms.business.abstracts.StaffService;
 import kodlamaio.pgadminhrms.business.abstracts.UserVerificationService;
@@ -16,6 +17,7 @@ import kodlamaio.pgadminhrms.dataAccess.abstracts.StaffDao;
 import kodlamaio.pgadminhrms.entities.concretes.Employer;
 import kodlamaio.pgadminhrms.entities.concretes.Staff;
 import kodlamaio.pgadminhrms.entities.concretes.UserVerification;
+import kodlamaio.pgadminhrms.entities.dtos.StaffDto;
 
 @Service
 public class StaffManager implements StaffService {
@@ -23,16 +25,18 @@ public class StaffManager implements StaffService {
 	private StaffDao staffDao;
 	private EmployerService employerService;
 	private UserVerificationService userVerificationService;
+	private DtoConverterService dtoConverterService;
 	private UserVerification userVerification;
 	private Employer employer = null;
 
 	@Autowired
-	public StaffManager(StaffDao staffDao, EmployerService employerService,
+	public StaffManager(StaffDao staffDao, DtoConverterService dtoConverterService, EmployerService employerService,
 			UserVerificationService userVerificationService) {
 		super();
 		this.staffDao = staffDao;
 		this.employerService = employerService;
 		this.userVerificationService = userVerificationService;
+		this.dtoConverterService = dtoConverterService;
 
 //		this.employer = new Employer();
 //		this.userVerification = new UserVerification();
@@ -51,6 +55,14 @@ public class StaffManager implements StaffService {
 
 		this.staffDao.save(staff);
 		return new SuccessResult("Sistem personeli başarıyla eklendi. ");
+	}
+
+	@Override
+	public Result addStaffDto(StaffDto staffDto) {
+
+		this.staffDao.save((Staff) dtoConverterService.dtoClassConverter(staffDto, Staff.class));
+		return new SuccessResult("Sistem personeli başarıyla eklendi. ");
+
 	}
 
 	@Override

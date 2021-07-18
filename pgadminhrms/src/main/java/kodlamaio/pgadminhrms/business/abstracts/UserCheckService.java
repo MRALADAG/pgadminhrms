@@ -1,10 +1,10 @@
 package kodlamaio.pgadminhrms.business.abstracts;
 
 import kodlamaio.pgadminhrms.core.utilities.results.Result;
-import kodlamaio.pgadminhrms.entities.concretes.User;
+import kodlamaio.pgadminhrms.entities.concretes.JobSeeker;
 
-public interface UserCheckService {
+public interface UserCheckService<T> {
 
-	Result checkIfRealPerson(User user);
+	Result checkIfRealPerson(T user);
 
 }

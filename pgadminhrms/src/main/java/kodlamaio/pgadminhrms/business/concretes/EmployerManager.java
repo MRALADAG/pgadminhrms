@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import kodlamaio.pgadminhrms.business.abstracts.EmailValidationService;
 import kodlamaio.pgadminhrms.business.abstracts.EmployerService;
 import kodlamaio.pgadminhrms.core.utilities.results.DataResult;
+import kodlamaio.pgadminhrms.core.utilities.results.ErrorDataResult;
 import kodlamaio.pgadminhrms.core.utilities.results.ErrorResult;
 import kodlamaio.pgadminhrms.core.utilities.results.Result;
 import kodlamaio.pgadminhrms.core.utilities.results.SuccessDataResult;
@@ -98,6 +99,29 @@ public class EmployerManager implements EmployerService {
 	public Employer getById(int id) {
 
 		return this.employerDao.findById(id).get();
+
+	}
+
+	@Override
+	public DataResult<Employer> findByEmailIgnoreCase(String email) {
+
+		if (!this.employerDao.findByEmailIgnoreCase(email).getEmail().isEmpty()) {
+
+			return new ErrorDataResult<Employer>(this.employerDao.findByEmailIgnoreCase(email),
+					"Aynı eposta ile sistemde kayıt bulunmaktadır. ");
+
+		} else {
+
+			return new SuccessDataResult<Employer>(null, "Eposta kayıtlı değildir. ");
+
+		}
+
+	}
+
+	@Override
+	public boolean existsByEmailIgnoreCase(String email) {
+
+		return this.employerDao.existsByEmailIgnoreCase(email);
 
 	}
 

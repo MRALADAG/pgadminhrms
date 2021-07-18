@@ -49,4 +49,11 @@ public class EmployerController {
 		return this.employerService.getById(id);
 
 	}
+
+	@GetMapping("/findByEmailIgnoreCase")
+	public DataResult<Employer> findByEmailIgnoreCase(@RequestParam String email) {
+
+		return this.employerService.findByEmailIgnoreCase(email);
+
+	}
 }

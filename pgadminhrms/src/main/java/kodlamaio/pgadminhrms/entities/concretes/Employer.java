@@ -7,6 +7,9 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -46,7 +49,7 @@ public class Employer extends User {
 	@Column(name = "website")
 	private String website;
 
-	@JsonIgnore
+//	@JsonIgnore
 	@Column(name = "is_confirmed_by_staff")
 	private boolean isConfirmedByStaff;
 

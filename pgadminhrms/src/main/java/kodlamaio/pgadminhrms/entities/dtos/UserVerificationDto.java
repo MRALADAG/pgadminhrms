@@ -17,7 +17,7 @@ public class UserVerificationDto {
 	private int id;
 	private int companyId;
 	private String companyCompanyName;
-	private boolean companyIsConfirmedByStaff;
+	private boolean companyConfirmedByStaff;
 	private String companyWebsite;
 //	private String websiteCompany;
 //	yukarıdaki ifadeye alternatif olarak bu şekilde de kullanılabilir.

@@ -10,19 +10,22 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "employees")
+@Table(name = "job_seeker")
 @Data
 @EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
 @AllArgsConstructor
 
-public class Employee extends User {
+public class JobSeeker extends User {
 
 	@NotBlank(message = "İsim kısmı boş bırakılamaz. ")
 	@Column(name = "first_name")

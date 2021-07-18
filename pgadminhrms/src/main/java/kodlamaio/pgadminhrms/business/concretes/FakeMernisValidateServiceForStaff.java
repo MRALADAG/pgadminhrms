@@ -5,16 +5,14 @@ import org.springframework.stereotype.Service;
 import kodlamaio.pgadminhrms.business.abstracts.UserCheckService;
 import kodlamaio.pgadminhrms.core.utilities.results.Result;
 import kodlamaio.pgadminhrms.core.utilities.results.SuccessResult;
-import kodlamaio.pgadminhrms.entities.concretes.User;
-import kodlamaio.pgadminhrms.mernisServices.MernisCheck;
+import kodlamaio.pgadminhrms.entities.concretes.Staff;
 
-@Service
-public class MernisCheckManagerAdapter implements UserCheckService {
+@Service("FakeMernisValidateServiceStaff")
+public class FakeMernisValidateServiceForStaff implements UserCheckService<Staff> {
 
-	public Result checkIfRealPerson(User user) {
+	@Override
+	public Result checkIfRealPerson(Staff user) {
 
-		MernisCheck mernisCheck = new MernisCheck();
-		mernisCheck.isRealPerson();
 		return new SuccessResult("Mernis sorgusu başarılıdır. ");
 
 	}

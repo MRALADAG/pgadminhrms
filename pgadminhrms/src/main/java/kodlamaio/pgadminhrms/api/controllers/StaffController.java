@@ -16,6 +16,7 @@ import kodlamaio.pgadminhrms.business.abstracts.StaffService;
 import kodlamaio.pgadminhrms.core.utilities.results.DataResult;
 import kodlamaio.pgadminhrms.core.utilities.results.Result;
 import kodlamaio.pgadminhrms.entities.concretes.Staff;
+import kodlamaio.pgadminhrms.entities.dtos.StaffDto;
 
 @RestController
 @RequestMapping("/api/staff")
@@ -36,10 +37,17 @@ public class StaffController {
 
 	}
 
-	@PostMapping("addstaff")
+	@PostMapping("/addstaff")
 	public Result addStaff(@Valid @RequestBody Staff staff) {
 
 		return this.staffService.addStaff(staff);
+
+	}
+
+	@PostMapping("/addStaffDto")
+	public Result addStaffDto(@Valid @RequestBody StaffDto staffDto) {
+
+		return this.staffService.addStaffDto(staffDto);
 
 	}
 

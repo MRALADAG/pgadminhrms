@@ -17,6 +17,8 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -54,6 +56,11 @@ public class User {
 	@Size(min = 9, message = "Parola alanı en az 9 karakter olmalıdır. ")
 	@Column(name = "password")
 	private String password;
+
+	@NotBlank(message = "Parola tekrarı boş bırakılamaz.")
+	@JsonProperty(access = Access.WRITE_ONLY)
+	@Column(name = "password_repetition")
+	private String passwordRepetition;
 
 	@JsonProperty(access = Access.READ_ONLY)
 	@Column(name = "is_active")
